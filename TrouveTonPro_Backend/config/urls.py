@@ -25,8 +25,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/workers/', include('workers_api.urls')),
 ]
-
-
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, documents_root=settings.STATIC_ROOT)
     

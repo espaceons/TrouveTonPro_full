@@ -1,6 +1,6 @@
 # workers_api/admin.py
 from django.contrib import admin
-from .models import Worker
+from .models import Advertisement, Worker
 
 class WorkerAdmin(admin.ModelAdmin):
     
@@ -57,6 +57,22 @@ class WorkerAdmin(admin.ModelAdmin):
         }),
     )
 
-
-# 3. Enregistrement
 admin.site.register(Worker, WorkerAdmin)
+
+
+class AdvertisementAdmin(admin.ModelAdmin):
+    list_display = (
+        'title', 
+        'store_name', 
+        'priority', 
+        'category_target', 
+        'is_active', 
+        'start_date', # 🚨 AJOUT
+        'end_date',   # 🚨 AJOUT
+        'created_at'
+    )
+    list_filter = ('is_active', 'category_target', 'city_target', 'start_date', 'end_date') # 🚨 AJOUT
+    search_fields = ('title', 'store_name')
+    list_editable = ('is_active', 'priority', 'start_date', 'end_date') # 🚨 AJOUT
+
+admin.site.register(Advertisement, AdvertisementAdmin)
